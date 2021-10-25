@@ -52,7 +52,12 @@ class CertificadosController extends Controller
 
             Certificados::create($data);
 
-            return redirect()->route('dashboard')->with('message', 'Certificado Enviado com Sucesso!');
+            return redirect()
+                        ->route('dashboard')
+                        ->with([
+                            'color' => 'green',
+                            'message' =>'Certificado Atualizado!'
+                        ]);
 
         }
 

@@ -106,15 +106,15 @@
                                                 <a href="{{ route('certificate.notapprove', ['id' => $cert->id]) }}" class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Não Homologar</a>
                                             </td>
                                         </tr>
-                                        @empty
-                                       
+                                        
+                                    </tbody>
+                                    @empty
+                                </table>
                                         <span class=" flex flex-col justify-between w-full px-4 mb-3 py-4 text-yellow-700 bg-yellow-100 rounded">
                                             Não há certificados.
                                         </span>
-                                        @endforelse
+                                    @endforelse
                                         
-                                    </tbody>
-                                </table>
                             </div>
                             @if (isset($filters))
                                 {{ $data->appends($filters)->links() }}

@@ -85,12 +85,16 @@
                                                 @endif    
                                             </td>
                                         </tr>
+                                    </tbody>
                                         @empty
-                                            Não há certificados.
+                                    </table>
+                                            <div class=" flex flex-col justify-between w-full px-4 mb-3 py-4 text-yellow-700 bg-yellow-100 rounded">
+                                                <span>
+                                                    Não há certificados.
+                                                </span>
+                                            </div>
                                         @endforelse
                                         
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                     </div>
