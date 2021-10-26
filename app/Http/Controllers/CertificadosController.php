@@ -7,6 +7,8 @@ use App\Models\Certificados;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class CertificadosController extends Controller
 {
@@ -44,7 +46,7 @@ class CertificadosController extends Controller
 
             $nameFile = Str::slug($request->titulo, '-'). '.' .$request->path->getClientOriginalExtension();
 
-            $path = $request->path->storeAS('public/certificados', $nameFile);
+            $path = $request->path->storeAS('certificados', $nameFile);
  
             $data['path'] = $path;
             $data['user_id'] = Auth::user()->id;
@@ -56,7 +58,7 @@ class CertificadosController extends Controller
                         ->route('dashboard')
                         ->with([
                             'color' => 'green',
-                            'message' =>'Certificado Atualizado!'
+                            'message' =>'Certificado Enviado com Sucesso!'
                         ]);
 
         }
@@ -110,8 +112,10 @@ class CertificadosController extends Controller
      * @param  \App\Models\Certificados  $certificados
      * @return \Illuminate\Http\Response
      */
-    public function update(CertificadosRequest $request, $id)
+    public function update(Request $request, $id)
     {
+        
+
         if(!$certificado = Certificados::find($id)){
             return redirect()
                     ->route('dashboard')
@@ -127,7 +131,21 @@ class CertificadosController extends Controller
                     'message' => 'Certificado já analisado, não é possivel editar'
             ]);
         }else{
-            $certificado->update($request->all());
+
+            $data = $request->all();
+
+            if($request->path){
+                if(Storage::exists($certificado->path)){
+                    Storage::delete($certificado->path);
+                }
+
+                $nameFile = Str::slug($request->titulo, '-'). '.' .$request->path->getClientOriginalExtension();
+                $path = $request->path->storeAS('certificados', $nameFile);
+                $data['path'] = $path;              
+            }
+            
+            $certificado->update($data);
+            //$certificado->update($request->all());
         
             return redirect()
                     ->route('dashboard')
@@ -155,6 +173,10 @@ class CertificadosController extends Controller
                         'color' => 'red',
                         'message' => 'Certificado não encontrado'
                     ]);
+        }
+
+        if(Storage::exists($certificado->path)){
+            Storage::delete($certificado->path);
         }
 
         $certificado->delete();

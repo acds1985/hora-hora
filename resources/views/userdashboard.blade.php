@@ -8,14 +8,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @if (session()->exists('message'))
-                <div class="flex flex-col justify-between w-full px-4 mb-3 py-4 text-{{ session()->get('color') }}-700 bg-{{ session()->get('color') }}-100 rounded"> {{session()->get('message')}}</div>
-            @endif
+            
              
                 <div class="container flex justify-center">
                     <div class="flex flex-col">
                         <div class="w-full">
                             <div class="border-b border-gray-200 shadow">
+                                @if (session()->exists('message'))
+                                    <div class="flex flex-col justify-between w-full px-4 mb-3 py-4 text-{{ session()->get('color') }}-700 bg-{{ session()->get('color') }}-100 rounded"> {{session()->get('message')}}</div>
+                                @endif
                                 <table class=" divide-y divide-gray-300 ">
                                     <thead class="bg-gray-50">
                                         <tr>
