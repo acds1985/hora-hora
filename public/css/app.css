@@ -180,7 +180,6 @@ Forms
 button,
 input,
 optgroup,
-select,
 textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
@@ -193,10 +192,7 @@ Remove the inheritance of text transform in Edge and Firefox.
 1. Remove the inheritance of text transform in Firefox.
 */
 
-button,
-select { /* 1 */
-  text-transform: none;
-}
+
 
 /**
 Correct the inability to style clickable types in iOS and Safari.
@@ -502,7 +498,7 @@ optgroup,
 select,
 textarea {
   padding: 0;
-  line-height: inherit;
+  
   color: inherit;
 }
 
@@ -590,7 +586,7 @@ video {
       [type='week'],
       [multiple],
       textarea,
-      select
+      
      {
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -643,15 +639,6 @@ input::placeholder, textarea::placeholder {
   min-height: 1.5em;
 }
 
-select {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
-  background-position: right 0.5rem center;
-  background-repeat: no-repeat;
-  background-size: 1.5em 1.5em;
-  padding-right: 2.5rem;
-  -webkit-print-color-adjust: exact;
-          color-adjust: exact;
-}
 
 [multiple] {
   background-image: initial;

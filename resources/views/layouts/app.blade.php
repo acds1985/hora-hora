@@ -8,6 +8,7 @@
         <title>Hora-Hora</title>
 
         <!-- Fonts -->
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
@@ -32,5 +33,29 @@
                 {{ $slot }}
             </main>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+        <script src="http://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"> </script>
+        <script>
+            $(document).ready( function () {
+                $('#tablecert').DataTable({
+                    "language": {
+                        "lengthMenu": "Exibindo _MENU_ resultados por pagina",
+                        "zeroRecords": "Nada Encontrado, Sinto muito.",
+                        "info": "Exbindo pagina _PAGE_ de _PAGES_",
+                        "infoEmpty": "Não há dados disponiveis...",
+                        "infoFiltered": "(Pesquisado e um total de _MAX_ resultados)",
+                        "search": "Pesquisar",
+                        "paginate": {
+                            "next": "Próximo",
+                            "previous": "Anterior",
+                            "first": "Primeiro",
+                            "last": "Último"
+                        }
+                    }
+                } );
+           } );
+
+        </script>
     </body>
 </html>
