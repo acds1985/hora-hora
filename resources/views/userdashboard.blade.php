@@ -8,68 +8,67 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            @if (session()->exists('message'))
+                <div class="flex flex-col justify-between w-full px-4 mb-3 py-4 text-{{ session()->get('color') }}-700 bg-{{ session()->get('color') }}-100 rounded"> {{session()->get('message')}}</div>
+            @endif  
             
-             
-                <div class="container flex justify-center">
-                    <div class="flex flex-col">
-                        <div class="w-full">
-                            <div class="border-b border-gray-200 shadow">
-                                @if (session()->exists('message'))
-                                    <div class="flex flex-col justify-between w-full px-4 mb-3 py-4 text-{{ session()->get('color') }}-700 bg-{{ session()->get('color') }}-100 rounded"> {{session()->get('message')}}</div>
-                                @endif
-                                <table class=" divide-y divide-gray-300 ">
+                <div class="container">
+                    <div class="unit w-2-3"><div class="hero-callout">
+                        <table id="tablecert" class="display" style="width:100%">
+                                    @if (isset($data))
                                     <thead class="bg-gray-50">
                                         <tr>
-                                            <th class="px-6 py-2 text-xs text-gray-500">
+                                            <th>
                                                 ID
                                             </th>
-                                            <th class="px-6 py-2 text-xs text-gray-500">
+                                            <th>
                                                 Nome
                                             </th>
-                                            <th class="px-6 py-2 text-xs text-gray-500">
+                                            <th>
                                                 Tipo
                                             </th>
-                                            <th class="px-6 py-2 text-xs text-gray-500">
+                                            <th>
                                                 Horas
                                             </th>
-                                            <th class="px-6 py-2 text-xs text-gray-500">
+                                            <th>
                                                 Adicionado em:
                                             </th>
-                                            <th class="px-6 py-2 text-xs text-gray-500">
+                                            <th>
                                                 Status
                                             </th>
-                                            <th class="px-6 py-2 text-xs text-gray-500">
+                                            <th>
                                                 Ações
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody class="bg-white divide-y divide-gray-300">
-                                        @forelse ($data as $cert)
-                                        <tr class="whitespace-nowrap">
-                                            <td class="px-6 py-2 text-xs text-gray-500">
+                                    @endif
+                                    <tbody>
+                                        @foreach($data as $cert)
+                                        <tr align="center">
+                                            <td>
                                                 {{ $cert->id }}
                                             </td>
-                                            <td class="px-6 py-4">
-                                                <div class="px-6 py-2 text-xs text-gray-500">
+                                            <td>
+                                               
                                                   {{ $cert->titulo }}
-                                                </div>
+                                                
                                             </td>
-                                            <td class="px-6 py-4">
-                                                <div class="px-6 py-2 text-xs text-gray-500">
+                                            <td>
+                                                
                                                     {{ $cert->tipo }}
-                                                </div>
+                                               
                                             </td>
-                                            <td class="px-6 py-4">
-                                                <div class="px-6 py-2 text-xs text-gray-500">
+                                            <td>
+                                               
                                                     {{ $cert->horas }}
-                                                </div>
+                                               
                                             </td>
-                                            <td class="px-6 py-4">
-                                                <div class="px-6 py-2 text-xs text-gray-500">
-                                                    {{ date('d/m/Y H:i:s', strtotime( $cert->created_at)) }}
-                                                </div>
+                                            <td>
+ 
+                                                    {{ date('d/m/Y', strtotime( $cert->created_at)) }}
+                                               
                                             </td>
-                                            <td class="px-6 py-2 text-xs text-gray-500">
+                                            <td>
                                                 @if ($cert->status == 0)
                                                     <label class="px-4 py-1 text-sm text-yellow-600 bg-yellow-200 rounded-full">Em Analise</label>
                                                 @elseif ($cert->status == 1)
@@ -85,22 +84,13 @@
                                                     <a href="{{ route('certificate.delete', $cert->id) }}" class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Deletar</a>
                                                 @endif    
                                             </td>
-                                        </tr>
-                                    </tbody>
-                                        @empty
-                                    </table>
-                                            <div class=" flex flex-col justify-between w-full px-4 mb-3 py-4 text-yellow-700 bg-yellow-100 rounded">
-                                                <span>
-                                                    Não há certificados.
-                                                </span>
-                                            </div>
-                                        @endforelse
-                                        
-                            </div>
-                        </div>
-                    </div>
-                  </div>
-           
+                                        </tr>   
+                                @endforeach
+                            </tbody>
+                        </table>
+                      </div>
+                    </div>    
+                </div>
         </div>
     </div>
 </x-app-layout>

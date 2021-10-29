@@ -46,7 +46,7 @@
                                     @endif
                                     <tbody>
                                         @foreach($data as $cert)
-                                        <tr>
+                                        <tr align="center">
                                             <td>
                                                 {{ $cert->id }}
                                             </td>
@@ -70,8 +70,8 @@
                                                     {{ $cert->horas }}
                                                
                                             </td>
-                                            <td class="">
-                                                
+                                            <td>
+ 
                                                     {{ date('d/m/Y', strtotime( $cert->created_at)) }}
                                                
                                             </td>
