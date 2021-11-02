@@ -41,7 +41,7 @@
                                     Tipo  
                               </label>
                               <div>
-                                <select name="tipo" class="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded" id="location" required>
+                                <select name="tipo" class="w-full bg-gray-200 border border-gray-200 text-black text-xl py-3 px-4 pr-8 mb-3 rounded" id="location" required>
                                   <option value="" disabled selected>Selecione o tipo</option>
                                   <option value="Presencial">Presencial</option>
                                   <option value="OnLine">On-Line</option>

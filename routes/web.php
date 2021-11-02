@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CertificadosController;
 use App\Http\Controllers\DashboardController;
 use App\Models\Certificados;
@@ -30,7 +31,7 @@ Route::group(['middleware' => ['auth'], ['roles' => 'admin']], function(){
     Route::any('/certificate-search', [CertificadosController::class, 'search'])->name('certificate.search');
     Route::get('/certificate-approve/{id}', [CertificadosController::class, 'approve'])->name('certificate.approve');
     Route::get('/certificate-notApprove/{id}', [CertificadosController::class, 'notApprove'])->name('certificate.notapprove');
-    
+    Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
 });
 
 Route::group(['middleware' => ['auth'], ['roles' => 'student']], function(){
